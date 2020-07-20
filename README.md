@@ -51,7 +51,7 @@ __Em seguida__, será criada duas pastas caso não existam:
 - components
 - services
 
-![A saída final no terminal](./assets/crud-generator-node.png)
+![A saída final no terminal](https://github.com/TaffarelXavier/crud-generator-node-graphql-and-rest-api/raw/master/assets/crud-generator-node.png)
 
 ## A estrutura final é esta:
 
