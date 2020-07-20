@@ -57,7 +57,8 @@ async function promptForMissingOptions(options) {
       type: 'input',
       name: 'fields',
       message:
-        chalk.red.bold('3/5') + ' - Digite os campos separados por ponto e vírgula: ',
+        chalk.red.bold('3/5') +
+        ' - Digite os campos separados por ponto e vírgula: ',
       default: 'firstname; email; phone; password',
     });
   }
@@ -101,7 +102,5 @@ async function promptForMissingOptions(options) {
 export async function cli(args) {
   let options = parseArgumentsIntoOptions(args);
   options = await promptForMissingOptions(options);
-  // console.log(options);
-  console.log(options);
   createComponent(options);
 }
