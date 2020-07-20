@@ -1,21 +1,27 @@
 {
-  "name": "crud-generator-node",
-  "version": "1.0.0",
-  "description": "",
+  "name": "crud-generator-node-graphql-and-rest-api",
+  "version": "1.0.3",
+  "description": "This for simple package is free open source to create CRUD to node in formats GraphQL or REST API",
   "main": "index.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "bin": {
-    "@your_npm_username/crud-generator-node": "bin/crud-generator-node",
+    "@TaffarelXavier/crud-generator-node-graphql-and-rest-api": "bin/crud-generator-node",
     "crud-generator-node": "bin/crud-generator-node"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+	"graphql",
+	"api rest",
+	"crud",
+	"generator"  
+],
+  "author": {
+    "name": "Taffarel Xavier",
+    "email": "taffarel_deus@hotmail.com"
+  },
   "license": "ISC",
+  "repository": "https://github.com/TaffarelXavier/crud-generator-node-graphql-and-rest-api",
   "dependencies": {
     "arg": "^4.1.3",
     "esm": "^3.2.25",

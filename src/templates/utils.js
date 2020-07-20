@@ -1,6 +1,6 @@
-export function sanitizeStringWithComma(fields) {
+﻿export function sanitizeStringWithComma(fields) {
   fields = fields
-    .split(',')
+    .split(';')
     .map((item) => {
       return item.trim();
     })

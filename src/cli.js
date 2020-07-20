@@ -1,4 +1,4 @@
-import arg from 'arg';
+﻿import arg from 'arg';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import { createComponent } from './main';
@@ -37,7 +37,7 @@ async function promptForMissingOptions(options) {
       type: 'input',
       name: 'componentName',
       message:
-        chalk.red.bold('1/5') + ' - Por favor, digite o nome do componente',
+        chalk.red.bold('1/5') + ' - Por favor, digite o nome do componente: ',
       default: 'User',
     });
   }
@@ -47,7 +47,7 @@ async function promptForMissingOptions(options) {
       type: 'list',
       name: 'type',
       choices: ['controller'],
-      message: chalk.red.bold('2/5') + ' - Escolha o tipo',
+      message: chalk.red.bold('2/5') + ' - Escolha o tipo: ',
       default: 'controller',
     });
   }
@@ -57,8 +57,8 @@ async function promptForMissingOptions(options) {
       type: 'input',
       name: 'fields',
       message:
-        chalk.red.bold('3/5') + ' - Digite os campos separados por vírgula',
-      default: 'firstname, email, phone, password',
+        chalk.red.bold('3/5') + ' - Digite os campos separados por ponto e vírgula: ',
+      default: 'firstname; email; phone; password',
     });
   }
 
@@ -71,7 +71,7 @@ async function promptForMissingOptions(options) {
         chalk.red.bold('4/5') +
         ' - Selecione uma das opções de crud. Selecione' +
         chalk.cyan.bold(' all ') +
-        'para criar o CRUD completo',
+        'para criar o CRUD completo: ',
       default: 'all',
     });
   }
@@ -103,5 +103,5 @@ export async function cli(args) {
   options = await promptForMissingOptions(options);
   // console.log(options);
   console.log(options);
-  // createComponent(options);
+  createComponent(options);
 }
