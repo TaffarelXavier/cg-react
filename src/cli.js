@@ -87,6 +87,16 @@ async function promptForMissingOptions(options) {
     });
   }
 
+  if (!options.output) {
+    questions.push({
+      type: 'list',
+      name: 'output',
+      choices: ['criar arquivos na pasta components', 'clipboard'],
+      message: chalk.red.bold('5/5') + ' - Selecione o tipo de saída: ',
+      default: 'criar arquivos na pasta components',
+    });
+  }
+
   const answers = await inquirer.prompt(questions);
 
   return {
@@ -96,6 +106,7 @@ async function promptForMissingOptions(options) {
     fields: options.fields || answers.fields,
     selectCrudOption: options.isCrudAll || answers.isCrudAll,
     typeApi: options.typeApi || answers.typeApi,
+    output: options.output || answers.output, 
   };
 }
 
