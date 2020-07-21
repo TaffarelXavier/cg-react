@@ -1,4 +1,6 @@
-﻿export function sanitizeStringWithComma(fields) {
+﻿import chalk from 'chalk';
+import fs from 'fs';
+export function sanitizeStringWithComma(fields) {
   fields = fields
     .split(';')
     .map((item) => {
@@ -36,6 +38,22 @@ export function TemplateComponentReact(options, crudName, data) {
 
 export default ${options.componentName + crudName};
  `;
+}
+
+/**
+ * 
+ * @param {*} filename 
+ * @param {*} content 
+ * @param {*} mensagem 
+ */
+export function createFile(filename, content, mensagem) {
+  fs.writeFile(`${filename}`, content, function (err) {
+    /**
+     *  { flag: 'wx' }
+     */
+    if (err) throw err;
+    console.log(mensagem, chalk.green.bold('SUCCESS'));
+  });
 }
 
 export function FileConfigApi() {

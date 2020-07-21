@@ -2,12 +2,10 @@ import {
   sanitizeStringWithComma,
   nameCapitalized,
   TemplateComponentReact,
-} from './utils';
+} from '../utils';
 
-export function CreateComponentCreate(options) {
+export function CreateComponent(options) {
   let createTableArray = [...sanitizeStringWithComma(options.fields)];
-
-  // let componentName = options.componentName.toLowerCase() + 's';
 
   let content = '';
 
@@ -18,25 +16,31 @@ export function CreateComponentCreate(options) {
   });
 
   content += `\nconst onSubmit = async (ev) => {
-    const { data } = await api.post(
-      '/users',
-      {`;
+  
+  const { data } = await api.post("/graphql", {
+  query: \`mutation {
+      save(`;
 
+  content += createTableArray
+    .map((field) => {
+      return field.trim() + ':${' + field.trim() + '}';
+    })
+    .join(',');
+
+  content += `)\n{`;
   content += createTableArray
     .map((field) => {
       return field.trim();
     })
-    .join(',');
-    
-  content += ` },
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-    );
-    console.log(data); // Data
-    ev.preventDefault();
+    .join(', ');
+  content += `
+}}\`,\n},{
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}).then().catch()\n`;
+
+  content += `ev.preventDefault();
     };\n\n`;
 
   content += `return <>

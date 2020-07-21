@@ -1,6 +1,10 @@
-import { sanitizeStringWithComma, nameCapitalized, TemplateComponentReact } from './utils';
+import {
+  sanitizeStringWithComma,
+  nameCapitalized,
+  TemplateComponentReact,
+} from '../utils';
 
-export function CreateComponentRead(options) {
+export function ReadComponent(options) {
   let createTableArray = [...sanitizeStringWithComma(options.fields)];
 
   let componentName = options.componentName.toLowerCase() + 's';
@@ -10,8 +14,23 @@ export function CreateComponentRead(options) {
   )}] = useState("")\n
     
     const get${nameCapitalized(componentName)} = async () => {
-      const { data } = await api.get('/${componentName}');
-      setUsers([...${componentName}, data]);
+
+        try {
+          const query = \`{
+            {
+              teste
+            }
+          }\`;
+      const { data } = await api.post(
+        '/graphql',
+        { query },
+        {
+          headers: { 'content-type': 'application/json' },
+        },);
+      setUsers([...${componentName}, data.data]);
+      } catch (error) {
+          console.error(error);
+      }
     };
   
     useEffect(() => {

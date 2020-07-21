@@ -1,6 +1,7 @@
 import { sanitizeStringWithComma, nameCapitalized, TemplateComponentReact } from './utils';
 
 export function CreateComponentRead(options) {
+
   let createTableArray = [...sanitizeStringWithComma(options.fields)];
 
   let componentName = options.componentName.toLowerCase() + 's';
@@ -11,7 +12,7 @@ export function CreateComponentRead(options) {
     
     const get${nameCapitalized(componentName)} = async () => {
       const { data } = await api.get('/${componentName}');
-      setUsers([...${componentName}, data]);
+      set${nameCapitalized(componentName)}([...${componentName}, data]);
     };
   
     useEffect(() => {

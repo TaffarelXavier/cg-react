@@ -79,6 +79,6 @@ useEffect(() => {
     }} /></div>`;
   });
 
-  content += '</form></>';
+  content += '<button className="" type="submit">Salvar alterações</button></form></>';
   return TemplateComponentReact(options, 'Edit', content);
 }

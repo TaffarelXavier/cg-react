@@ -1,6 +1,6 @@
-# __Gerador de CRUD para node - Cliente__
+# __Gerador de CRUD para React JS - Cliente__
 
-__Este é um pacote simples de código aberto gratuito para criar CRUD para React JS__
+__Este é um pacote simples de código aberto para criar CRUD para React JS__
 
 # Características
 - Automatização de operações crud
@@ -11,11 +11,13 @@ __Este é um pacote simples de código aberto gratuito para criar CRUD para Reac
 - Desenvolvido utilizando ES6.
 
 # Motivação
-Não sei vocês, mas, para mim, umas das coisas mais chatas em programação é criar um crud, principalmente, na questão de update, porque exige que façamos a busca e depois façamos a atualização, ou seja, temos que fazer uma requisição buscando os dados e, em seguida, fazer outra requisição para a atualização usando, geralmente, formulários.
+Não sei vocês, mas, para mim, umas das coisas mais chatas em programação é criar um crud completo do zero, principalmente, na questão de update, porque exige que façamos a busca e, somente depois, a atualização, ou seja, temos que fazer uma requisição buscando os dados e, em seguida, fazer outra requisição para a atualização, usando, geralmente, formulários.
 
-Eu percebi que eu não estava tendo muita produtividade, porque sempre me empatava no U, do CRUD. Sempre o deixava para a última hora. E, sinceramente, eu já programo há muito tempo (não sou um *expert* da programação), mas sempre me empanco nisso, embora goste de fazer.
+Eu percebi que eu não estava tendo muita produtividade, porque sempre me perdia muito temo no __U__, do CRUD. Sempre o deixava para a última hora. E, sinceramente, eu já programo há muito tempo (não sou um *expert* da programação), mas sempre me empanco nisso.
 
-Foi pensando nisso que veio ao meu pensando a ideia de criar uma CLI capaz de resolver esse problema para mim. A sua usabilidade é muito simples, porque uso o inquirer para interação de usuário com o terminal. 
+Foi pensando nisso, que veio ao meu pensando a ideia de criar uma *CLI* capaz de resolver esse problema para mim. A sua usabilidade é muito simples, porque uso o inquirer para interação de usuário com o terminal em 5 passos somente.
+
+# __Vamos lá!__
 
 # Sistemas Operacionais suportados testados.
 - Windows
@@ -23,7 +25,7 @@ Foi pensando nisso que veio ao meu pensando a ideia de criar uma CLI capaz de re
 
 # Os formatos das requisições podem ser em:
  - GraphQL
- - API Rest
+ - Rest
 
 # Como utilizar
 
@@ -41,13 +43,13 @@ Na raiz do projeto React Js, execute o comando:
 $ crud-generator-node
 ```
 
-- Na opção __1/5__, digite __User__
-- Na opção __2/5__, escolha __controller__ e aperte enter
+- Na opção __1/5__, digite: __User__
+- Na opção __2/5__, escolha: __controller__
 - Na opção __3/5__, digite os campos separados por ponto e vírgula, assim: __nome; idade; senha; email; celular__
-- Na opção __4/5__, escolha __all__
-- Na opção __5/5__, escolha __restapi__
+- Na opção __4/5__, escolha: __all__
+- Na opção __5/5__, escolha: __rest__
 
-__Em seguida__, será criada duas pastas caso não existam:
+__Em seguida__, serão criada duas pastas caso não existam:
 - components
 - services
 
@@ -68,5 +70,10 @@ raíz do projeto:
 |   └── config.js               # Arquivo de configuração do sistema.
 └── ...
 ```
+> Não se esqueça de dá aquele velho shift+alt+f em cada arquivo gerado para formatá-lo.
 
-A estrutura acima pode ser refeita de acordo com as suas necessidades.
+A estrutura acima pode ser realocada de acordo com as suas necessidades.
+
+Você tem liberdade para brincar com o pacote, fique à vontade.
+
+## __Seja um contribuidor deste projeto.__

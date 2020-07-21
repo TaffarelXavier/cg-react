@@ -56,6 +56,6 @@ export function CreateComponentCreate(options) {
     }} /></div>`;
   });
 
-  content += '</form></>';
+  content += '<button className="" type="submit">Salvar</button></form></>';
   return TemplateComponentReact(options, 'Create', content);
 }

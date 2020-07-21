@@ -1,9 +1,16 @@
 import chalk from 'chalk';
 import fs from 'fs';
-import { FolderServices, FileConfigApi } from './templates/utils';
+import { FolderServices, FileConfigApi, createFile } from './templates/utils';
+
 import { CreateComponentRead } from './templates/ReadComponent';
 import { CreateComponentCreate } from './templates/CreateComponent';
 import { CreateComponentEdit } from './templates/EditComponent';
+
+import {
+  CreateComponent,
+  EditComponent,
+  ReadComponent,
+} from './templates/graphql/index';
 
 function createDirEqualsComponentName(dir) {
   try {
@@ -23,36 +30,22 @@ function criarPastaServices() {
 
   createDirEqualsComponentName(servicesDir); //Cria a pasta services
 
-  fs.exists(`${servicesDir}/axios.js`, function (exists) {
+  fs.exists(`${servicesDir}/axios.jsx`, function (exists) {
     if (!exists) {
-      fs.writeFile(
-        `${servicesDir}/axios.js`,
+      createFile(
+        `${servicesDir}/axios.jsx`,
         FolderServices(),
-        { flag: 'wx' },
-        function (err) {
-          if (err) throw err;
-          console.log(
-            '%s O arquivo axios.js foi criado na pasta services.',
-            chalk.green.bold('SUCCESS')
-          );
-        }
+        '%s O arquivo axios.jsx foi criado na pasta services.'
       );
     }
   });
 
-  fs.exists(`${servicesDir}/config.js`, function (exists) {
+  fs.exists(`${servicesDir}/config.jsx`, function (exists) {
     if (!exists) {
-      fs.writeFile(
-        `${servicesDir}/config.js`,
+      createFile(
+        `${servicesDir}/config.jsx`,
         FileConfigApi(),
-        { flag: 'wx' },
-        function (err) {
-          if (err) throw err;
-          console.log(
-            '%s O arquivo config.js foi criado na pasta services.',
-            chalk.green.bold('SUCCESS')
-          );
-        }
+        '%s O arquivo config.jsx foi criado na pasta services.'
       );
     }
   });
@@ -75,90 +68,100 @@ export async function createComponent(options) {
 
   let fileName = `${componentsDir}${componentName}/${componentName}`;
 
-  switch (options.selectCrudOption) {
-    case 'all':
-      fs.writeFile(
-        `${fileName}Read.js`,
-        CreateComponentRead(options),
-        function (err) {
-          if (err) throw err;
-          console.log(
-            '%s O componente ' +
-              `${dirComponentNameWithFileName}Read.js` +
-              ' foi criado.',
-            chalk.green.bold('SUCCESS')
-          );
-        }
-      );
-
-      fs.writeFile(
-        `${fileName}Create.js`,
-        CreateComponentCreate(options),
-        function (err) {
-          if (err) throw err;
-          console.log(
-            `%s O componente ${dirComponentNameWithFileName}Create.js foi criado.`,
-            chalk.green.bold('SUCCESS')
-          );
-        }
-      );
-
-      fs.writeFile(
-        `${fileName}Edit.js`,
-        CreateComponentEdit(options),
-        function (err) {
-          if (err) throw err;
-          console.log(
-            `%s O componente ${dirComponentNameWithFileName}Edit.js foi criado.`,
-            chalk.green.bold('SUCCESS')
-          );
-        }
-      );
-      break;
-    case 'create':
-      fs.writeFile(
-        `${fileName}Create.js`,
-        CreateComponentCreate(options),
-        function (err) {
-          if (err) throw err;
-          console.log(
-            `%s O componente ${dirComponentNameWithFileName}Create.js foi criado.`,
-            chalk.green.bold('SUCCESS')
-          );
-        }
-      );
-
-      break;
-    case 'read':
-    case 'delete':
-      fs.writeFile(
-        `${fileName}Read.js`,
-        CreateComponentRead(options),
-        function (err) {
-          if (err) throw err;
-          console.log(
-            `%s O componente ${dirComponentNameWithFileName} foi criado.`,
-            chalk.green.bold('SUCCESS')
-          );
-        }
-      );
-      break;
-    case 'update':
-      fs.writeFile(
-        `${fileName}Edit.js`,
-        CreateComponentEdit(options),
-        function (err) {
-          if (err) throw err;
-          console.log(
-            `%s O componente ${dirComponentNameWithFileName} foi criado.`,
-            chalk.green.bold('SUCCESS')
-          );
-        }
-      );
-      break;
-    default:
-      break;
+  if (options.typeApi == 'rest') {
+    switch (options.selectCrudOption) {
+      case 'all':
+        createFile(
+          `${fileName}Read.jsx`,
+          CreateComponentRead(options),
+          '%s O componente ' +
+            `${dirComponentNameWithFileName}Read.jsx` +
+            ' foi criado.'
+        );
+        createFile(
+          `${fileName}Create.jsx`,
+          CreateComponentCreate(options),
+          `%s O componente ${dirComponentNameWithFileName}Create.jsx foi criado.`
+        );
+        createFile(
+          `${fileName}Edit.jsx`,
+          CreateComponentEdit(options),
+          `%s O componente ${dirComponentNameWithFileName}Edit.jsx foi criado.`
+        );
+        break;
+      case 'create':
+        createFile(
+          `${fileName}Create.jsx`,
+          CreateComponentCreate(options),
+          `%s O componente ${dirComponentNameWithFileName}Create.jsx foi criado.`
+        );
+        break;
+      case 'read':
+        createFile(
+          `${fileName}Read.jsx`,
+          CreateComponentRead(options),
+          '%s O componente ' +
+            `${dirComponentNameWithFileName}Read.jsx` +
+            ' foi criado.'
+        );
+        break;
+      case 'update':
+        createFile(
+          `${fileName}Edit.jsx`,
+          CreateComponentEdit(options),
+          `%s O componente ${dirComponentNameWithFileName}Edit.jsx foi criado.`
+        );
+        break;
+      default:
+        break;
+    }
+  } else if (options.typeApi == 'graphql') {
+    switch (options.selectCrudOption) {
+      case 'all':
+        createFile(
+          `${fileName}Read.jsx`,
+          ReadComponent(options),
+          '%s O componente ' +
+            `${dirComponentNameWithFileName}Read.jsx` +
+            ' foi criado.'
+        );
+        createFile(
+          `${fileName}Create.jsx`,
+          CreateComponent(options),
+          `%s O componente ${dirComponentNameWithFileName}Create.jsx foi criado.`
+        );
+        createFile(
+          `${fileName}Edit.jsx`,
+          EditComponent(options),
+          `%s O componente ${dirComponentNameWithFileName}Edit.jsx foi criado.`
+        );
+        break;
+      case 'create':
+        createFile(
+          `${fileName}Create.jsx`,
+          CreateComponent(options),
+          `%s O componente ${dirComponentNameWithFileName}Create.jsx foi criado.`
+        );
+        break;
+      case 'read':
+        createFile(
+          `${fileName}Read.jsx`,
+          ReadComponent(options),
+          '%s O componente ' +
+            `${dirComponentNameWithFileName}Read.jsx` +
+            ' foi criado.'
+        );
+        break;
+      case 'update':
+        createFile(
+          `${fileName}Edit.jsx`,
+          EditComponent(options),
+          `%s O componente ${dirComponentNameWithFileName}Edit.jsx foi criado.`
+        );
+        break;
+      default:
+        break;
+    }
   }
-
   return true;
 }

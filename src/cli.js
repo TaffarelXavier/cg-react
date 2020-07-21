@@ -81,8 +81,8 @@ async function promptForMissingOptions(options) {
     questions.push({
       type: 'list',
       name: 'typeApi',
-      choices: ['restapi', 'graphql'],
-      message: chalk.red.bold('5/5') + ' - Selecione a estrutura CORE: ',
+      choices: ['rest', 'graphql'],
+      message: chalk.red.bold('5/5') + ' - Selecione a estrutura da API: ',
       default: 'graphql',
     });
   }

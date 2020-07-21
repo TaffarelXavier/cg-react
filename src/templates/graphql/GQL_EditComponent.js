@@ -2,9 +2,9 @@ import {
   sanitizeStringWithComma,
   nameCapitalized,
   TemplateComponentReact,
-} from './utils';
+} from '../utils';
 
-export function CreateComponentEdit(options) {
+export function EditComponent(options) {
   let createTableArray = [...sanitizeStringWithComma(options.fields)];
 
   let componentName = options.componentName.toLowerCase();
@@ -17,18 +17,25 @@ export function CreateComponentEdit(options) {
     )}] = useState("")\n`;
   });
 
-  content += `
-const get${nameCapitalized(componentName)} = async (ev) => {
-  const { data } = await api.get(
-    '/${componentName}/INPUT_ID_FROM_${componentName.toUpperCase()}_HERE',
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });`;
+  content += `\nconst get${nameCapitalized(componentName)} = async (ev) => {
+
+  const query = \`{ get(id: id){`;
+
+  content += createTableArray
+    .map((field) => {
+      return field.trim();
+    })
+    .join(', ');
+
+  content += ` }}\`\n
+  const { data } = await api.post('/graphql', query , {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });`;
 
   createTableArray.map((field) => {
-    content += `set${nameCapitalized(field)}(data.${field.toLowerCase()})\n`;
+    content += `set${nameCapitalized(field)}(data.data.get.${field.toLowerCase()})\n`;
   });
 
   content += `console.log(data); // Data
@@ -40,26 +47,32 @@ useEffect(() => {
 }, []);
 `;
 
-  content += `\nconst onSubmit = async (ev) => {
-    const { data } = await api.put(
-      '/users',
-      {`;
+content += `\nconst onSubmit = async (ev) => {
+  
+  const { data } = await api.post("/graphql", {
+  query: \`mutation {
+      save(`;
 
+  content += createTableArray
+    .map((field) => {
+      return field.trim() + ':${' + field.trim() + '}';
+    })
+    .join(',');
+
+  content += `)\n{`;
   content += createTableArray
     .map((field) => {
       return field.trim();
     })
-    .join(',');
+    .join(', ');
+  content += `
+}}\`,\n},{
+  headers: {
+    'Content-Type': 'application/json',
+  },
+}).then().catch()\n`;
 
-  content += ` },
-  {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }
-    );
-    console.log(data); // Data
-    ev.preventDefault();
+  content += `ev.preventDefault();
     };\n\n`;
 
   content += `return <>
