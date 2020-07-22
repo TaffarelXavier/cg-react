@@ -2,44 +2,48 @@ import React, { useState, useEffect } from 'react';
  import api from '../../services/axios';
 
  const UserCreate = () => {
-  const [firstname, setFirstname] = useState("")
+  const [nome, setNome] = useState("")
+const [idade, setIdade] = useState("")
+const [senha, setSenha] = useState("")
 const [email, setEmail] = useState("")
-const [phone, setPhone] = useState("")
-const [password, setPassword] = useState("")
+const [celular, setCelular] = useState("")
 
 const onSubmit = async (ev) => {
-  
-  const { data } = await api.post("/graphql", {
-  query: `mutation {
-      save(firstname:${firstname},email:${email},phone:${phone},password:${password})
-{firstname, email, phone, password
-}}`,
-},{
-  headers: {
-    'Content-Type': 'application/json',
-  },
-}).then().catch()
-ev.preventDefault();
+    const { data } = await api.post(
+      '/users',
+      {nome,idade,senha,email,celular },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+    );
+    console.log(data); // Data
+    ev.preventDefault();
     };
 
 return <>
   <form onSubmit={onSubmit}><div>
-    <label htmlFor="firstname_1">Firstname</label>
-    <input name="firstname" id="firstname_1" value={firstname} onChange={({ target }) => {
-      setFirstname(target.value);
+    <label htmlFor="nome_1">Nome</label>
+    <input name="nome" id="nome_1" value={nome} onChange={({ target }) => {
+      setNome(target.value);
+    }} /></div><div>
+    <label htmlFor="idade_1">Idade</label>
+    <input name="idade" id="idade_1" value={idade} onChange={({ target }) => {
+      setIdade(target.value);
+    }} /></div><div>
+    <label htmlFor="senha_1">Senha</label>
+    <input name="senha" id="senha_1" value={senha} onChange={({ target }) => {
+      setSenha(target.value);
     }} /></div><div>
     <label htmlFor="email_1">Email</label>
     <input name="email" id="email_1" value={email} onChange={({ target }) => {
       setEmail(target.value);
     }} /></div><div>
-    <label htmlFor="phone_1">Phone</label>
-    <input name="phone" id="phone_1" value={phone} onChange={({ target }) => {
-      setPhone(target.value);
-    }} /></div><div>
-    <label htmlFor="password_1">Password</label>
-    <input name="password" id="password_1" value={password} onChange={({ target }) => {
-      setPassword(target.value);
-    }} /></div></form></>
+    <label htmlFor="celular_1">Celular</label>
+    <input name="celular" id="celular_1" value={celular} onChange={({ target }) => {
+      setCelular(target.value);
+    }} /></div><button className="" type="submit">Salvar</button></form></>
 }
 
 export default UserCreate;

@@ -29,7 +29,7 @@ async function promptForMissingOptions(options) {
       ...options,
     };
   }
-
+  const QUANTIDADE_OPCOES = 6;
   const questions = [];
 
   if (!options.componentName) {
@@ -37,7 +37,7 @@ async function promptForMissingOptions(options) {
       type: 'input',
       name: 'componentName',
       message:
-        chalk.red.bold('1/5') + ' - Por favor, digite o nome do componente: ',
+        chalk.red.bold(`1/${QUANTIDADE_OPCOES}`) + ' - Por favor, digite o nome do componente: ',
       default: 'User',
     });
   }
@@ -47,7 +47,7 @@ async function promptForMissingOptions(options) {
       type: 'list',
       name: 'type',
       choices: ['controller'],
-      message: chalk.red.bold('2/5') + ' - Escolha o tipo: ',
+      message: chalk.red.bold(`2/${QUANTIDADE_OPCOES}`) + ' - Escolha o tipo: ',
       default: 'controller',
     });
   }
@@ -57,7 +57,7 @@ async function promptForMissingOptions(options) {
       type: 'input',
       name: 'fields',
       message:
-        chalk.red.bold('3/5') +
+        chalk.red.bold(`3/${QUANTIDADE_OPCOES}`) +
         ' - Digite os campos separados por ponto e vírgula: ',
       default: 'firstname; email; phone; password',
     });
@@ -69,7 +69,7 @@ async function promptForMissingOptions(options) {
       name: 'isCrudAll',
       choices: ['all', 'create', 'read', 'update'],
       message:
-        chalk.red.bold('4/5') +
+        chalk.red.bold(`4/${QUANTIDADE_OPCOES}`) +
         ' - Selecione uma das opções de crud. Selecione' +
         chalk.cyan.bold(' all ') +
         'para criar o CRUD completo: ',
@@ -82,7 +82,7 @@ async function promptForMissingOptions(options) {
       type: 'list',
       name: 'typeApi',
       choices: ['rest', 'graphql'],
-      message: chalk.red.bold('5/5') + ' - Selecione a estrutura da API: ',
+      message: chalk.red.bold(`5/${QUANTIDADE_OPCOES}`) + ' - Selecione a estrutura da API: ',
       default: 'graphql',
     });
   }
@@ -92,7 +92,7 @@ async function promptForMissingOptions(options) {
       type: 'list',
       name: 'output',
       choices: ['criar arquivos na pasta components', 'clipboard'],
-      message: chalk.red.bold('5/5') + ' - Selecione o tipo de saída: ',
+      message: chalk.red.bold(`6/${QUANTIDADE_OPCOES}`) + ' - Selecione o tipo de saída: ',
       default: 'criar arquivos na pasta components',
     });
   }

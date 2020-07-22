@@ -22,10 +22,9 @@ export function ReadComponent(options) {
             }
           }\`;
       const { data } = await api.post(
-        '/graphql',
-        { query },
-        {
-          headers: { 'content-type': 'application/json' },
+        '/graphql',{
+        query,
+        headers: { 'content-type': 'application/json' },
         },);
       setUsers([...${componentName}, data.data]);
       } catch (error) {

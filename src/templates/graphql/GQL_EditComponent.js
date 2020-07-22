@@ -28,7 +28,7 @@ export function EditComponent(options) {
     .join(', ');
 
   content += ` }}\`\n
-  const { data } = await api.post('/graphql', query , {
+  const { data } = await api.post('/graphql', {query,
     headers: {
       'Content-Type': 'application/json',
     },

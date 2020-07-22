@@ -32,7 +32,7 @@ Foi pensando nisso, que veio ao meu pensando a ideia de criar uma *CLI* capaz de
 Instale:
 
 ```sh
-$ npm i -g crud-generator-node-graphql-and-rest-api
+$ npm i cg-react
 ```
 
 __Para criar um crud, por exemplo, denominado User, com os campos: *nome, idade, senha, email e celular*, siga estes passos:__
@@ -40,16 +40,22 @@ __Para criar um crud, por exemplo, denominado User, com os campos: *nome, idade,
 Na raiz do projeto React Js, execute o comando:
 
 ```sh
-$ crud-generator-node
+$ cg-react
 ```
 
-- Na opção __1/5__, digite: __User__
-- Na opção __2/5__, escolha: __controller__
-- Na opção __3/5__, digite os campos separados por ponto e vírgula, assim: __nome; idade; senha; email; celular__
-- Na opção __4/5__, escolha: __all__
-- Na opção __5/5__, escolha: __rest__
+- Na opção __1/6__, digite: __User__
+- Na opção __2/6__, escolha: __controller__
+- Na opção __3/6__, digite os campos separados por ponto e vírgula, assim: __nome; idade; senha; email; celular__
+- Na opção __4/6__, escolha: __all__
+- Na opção __5/6__, escolha: __rest__
+- Na opção __6/6__, escolha: __criar arquivos na pasta components__
 
-__Em seguida__, serão criada duas pastas caso não existam:
+Existem duas opções de saída:
+- Criação dos componentes na pasta `components`
+- Cópia para a área de transferência
+
+
+> Ao finalizar, serão criada duas pastas caso não existam:
 - components
 - services
 
@@ -76,4 +82,5 @@ A estrutura acima pode ser realocada de acordo com as suas necessidades.
 
 Você tem liberdade para brincar com o pacote, fique à vontade.
 
-## __Seja um contribuidor deste projeto.__
+## __Seja um contribuidor deste projeto ❤️.__
+

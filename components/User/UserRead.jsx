@@ -6,30 +6,15 @@ import React, { useState, useEffect } from 'react';
 
     
     const getUsers = async () => {
-
-        try {
-          const query = `{
-            {
-              teste
-            }
-          }`;
-      const { data } = await api.post(
-        '/graphql',
-        { query },
-        {
-          headers: { 'content-type': 'application/json' },
-        },);
-      setUsers([...users, data.data]);
-      } catch (error) {
-          console.error(error);
-      }
+      const { data } = await api.get('/users');
+      setUsers([...users, data]);
     };
   
     useEffect(() => {
       getUsers();
     }, []);
-return <table className="table"><thead><tr><th>FIRSTNAME</th><th>EMAIL</th><th>PHONE</th><th>PASSWORD</th></tr></thead><tbody>{(users || []).map(item => {
-      return <tr key={item.id}><td>{item.firstname}</td><td>{item.email}</td><td>{item.phone}</td><td>{item.password}</td></tr>})}</tbody></table>
+return <table className="table"><thead><tr><th>NOME</th><th>IDADE</th><th>SENHA</th><th>EMAIL</th><th>CELULAR</th></tr></thead><tbody>{(users || []).map(item => {
+      return <tr key={item.id}><td>{item.nome}</td><td>{item.idade}</td><td>{item.senha}</td><td>{item.email}</td><td>{item.celular}</td></tr>})}</tbody></table>
 }
 
 export default UserRead;
