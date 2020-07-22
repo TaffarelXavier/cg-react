@@ -1,6 +1,6 @@
 {
   "name": "cg-react",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Este é um pacote simples de código aberto para criar CRUD para React JS",
   "main": "index.js",
   "bin": {
