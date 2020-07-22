@@ -34,6 +34,7 @@ Instale:
 ```sh
 $ npm i cg-react
 ```
+[https://www.npmjs.com/package/cg-react](https://www.npmjs.com/package/cg-react)
 
 __Para criar um crud, por exemplo, denominado User, com os campos: *nome, idade, senha, email e celular*, siga estes passos:__
 
