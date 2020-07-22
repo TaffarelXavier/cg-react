@@ -11,7 +11,7 @@ __Este é um pacote simples de código aberto para criar CRUD para React JS__
 - Desenvolvido utilizando ES6.
 
 # Motivação
-Não sei vocês, mas, para mim, umas das coisas mais chatas em programação é criar um crud completo do zero, principalmente, na questão de update, porque exige que façamos a busca e, somente depois, a atualização, ou seja, temos que fazer uma requisição buscando os dados e, em seguida, fazer outra requisição para a atualização, usando, geralmente, formulários.
+Não sei vocês, mas, para mim, umas das coisas mais chatas em programação é criar um crud completo do zero, principalmente, na questão de update, porque exige que façamos a busca e, somente depois, a atualização. Ou seja, temos que fazer uma requisição buscando os dados e, em seguida, fazer outra requisição para a atualização, usando, geralmente, formulários.
 
 Eu percebi que eu não estava tendo muita produtividade, porque sempre me perdia muito temo no __U__, do CRUD. Sempre o deixava para a última hora. E, sinceramente, eu já programo há muito tempo (não sou um *expert* da programação), mas sempre me empanco nisso.
 
