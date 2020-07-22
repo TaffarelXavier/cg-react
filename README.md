@@ -54,6 +54,7 @@ Existem duas opções de saída:
 - Criação dos componentes na pasta `components`
 - Cópia para a área de transferência
 
+> Imagem ilustrativa tirada do teste: 
 ![A saída final no terminal](https://github.com/TaffarelXavier/crud-generator-node-graphql-and-rest-api/raw/master/assets/crud-generator-node.png)
 
 
